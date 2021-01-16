@@ -1,46 +1,28 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Amplifi Hosts Generator
 
-## Available Scripts
 
-In the project directory, you can run:
 
-### `npm start`
+This web app lets you convert JSON data you get by inspecting Ubiquiti Amplifi router's Web UI to hosts file format. This was built so I could export hosts from my router's DHCP client table to pihole so IP's could resolve to readable hostnames.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+  
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## How to use
 
-### `npm test`
+With Chrome, go to [http://amplifi.lan](http://amplifi.lan) from your local network, login and go to System Info on top right corner. Right click and hit 'Inspect' to open the devtools, then go to the network tab. You should see an entry for `info-async.php` on the network connection list, click that and go to the response sub tab. Copy all of that json info.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+  
 
-### `npm run build`
+Then run this tool using `npm i && npm start`, which should automatically open a window that goes to [http://localhost:3000](http://localhost:3000). You need `node` and `npm` installed in your system for this to work, but you probably already figured that out by now.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+You can also access the pre built version available online at [https://ksubedi.github.io/amplifi-host-generator/](https://ksubedi.github.io/amplifi-host-generator/)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Paste the JSON you copied into the input field and hit process to get the hosts file list. You can then paste this into `/etc/hosts` file on your pihole.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  
 
-### `npm run eject`
+## Other
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+This app might break if Ubiquiti changes the format of api down the line. Please open an issue on this repo if you notice that, I will try to update it with the new format.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+This project uses React under the hood. You can run tests with `npm run test`.
